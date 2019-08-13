@@ -1,4 +1,4 @@
-package com.bearfb.jxwx.controller;
+package com.bearfb.jxwx.modules.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    @RequestMapping("home")
+    @RequestMapping("login")
     public String home(){
-        return "home";
+        return "modules/user/login";
     }
 }
