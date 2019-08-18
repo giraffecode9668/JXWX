@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * <p>
- *  历史上的今天
+ *  历史上的今天路由选择
  * </p>
  *
  * @author linzimin
