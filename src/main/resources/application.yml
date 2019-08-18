@@ -1,0 +1,55 @@
+spring:
+  #数据库配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/jxwx?characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 8013
+    driverClassName: com.mysql.cj.jdbc.Driver
+    # 配置阿里的Druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池的连接数设置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间(毫秒)
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测,并关闭空闲的连接,
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间
+    minEvictableIdleTimeMillis: 300000
+    # 检测连接是否有效
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: true
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+
+  # 采用jpa,而非mybatis
+  jpa:
+    database: mysql
+    #后台打印sql语句
+    show-sql: true
+    # 自动检查实体和数据库表是否一致，如果不一致则会进行更新数据库表
+    hibernate:
+      ddl-auto: update
+    # 不加这句默认为myisam引擎，无法生成外键，需配置为InnoDB
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+# 日志打印
+logging:
+  # 路径
+  path: logs
+  # 日志文件名，如果不配置，默认文件名为spring.log
+  file: debug.log
+  level:
+    # 日志水平，在运行状态下输出日志
+    root: info
+###ThymeLeaf配置
