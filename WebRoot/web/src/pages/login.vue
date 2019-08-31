@@ -4,11 +4,11 @@
       <el-image class="img" :src="imgUrl"></el-image>
       <el-form class="loginForm" ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item class="tips" label="账号:"/>
-        <el-form-item>
+        <el-form-item prop="name">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item class="tips" label="密码:"/>
-        <el-form-item>
+        <el-form-item prop="key">
           <el-input v-model="form.key"></el-input>
         </el-form-item>
         <div class="forgetKey">
@@ -18,7 +18,7 @@
           <el-switch v-model="form.delivery"></el-switch>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">立即创建</el-button>
+          <el-button type="primary" @click="onSubmit('form')">立即创建</el-button>
         </el-form-item>
       </el-form>
       <div class="div">
@@ -34,6 +34,8 @@
   </div>
 </template>
 <script>
+  import store from '../store/store.js';
+  import axios from 'axios';
 
   export default {
     data(){
@@ -49,14 +51,33 @@
             { required: true, message: '请输入用户名', trigger: 'blur' },
           ],
           key: [
-            { required: true, message: '请输入密码', trigger: 'blur' }
+            { required: true, message: '请输入密码', trigger: 'blur' },
+            { min:6, message: "长度在六个字符以上", trigger: 'blur'}
           ],
         },
       }
     },
+    store,
     methods:{
-      onSubmit() {
+      onSubmit(formName) {
         console.log('submit!');
+
+
+        this.$refs[formName].validate((valid) => {
+          if(valid){
+            alert('登录提交');
+
+            this.$store.dispatch('Login', this.form)
+              .then(() => {
+                //登录成功之后重定向到首页
+                this.$router.push({ path: '/' });
+              });
+          } else{
+            console.log('error submit!!');
+            return false
+          }
+        });
+
       }
     }
   }

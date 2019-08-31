@@ -5,6 +5,8 @@ import App from './App'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
+import store from './store/store'
+
 import { HappyScroll } from 'vue-happy-scroll'
 Vue.component('happy-scroll', HappyScroll)
 import 'vue-happy-scroll/docs/happy-scroll.css'
@@ -17,6 +19,7 @@ Vue.use(ElementUI);
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>',
   render: h => h(App)

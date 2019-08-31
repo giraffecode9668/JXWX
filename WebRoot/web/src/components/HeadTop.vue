@@ -35,11 +35,8 @@
           </el-menu-item>
         </div>
         <div class="changerBeta" v-show="!showLogin" style="justify-content:flex-end; display:flex; width:150px">
-          <el-menu-item style="padding:0 5px">
-            {{this.$store.state.name}}
-          </el-menu-item>
-          <el-menu-item style="padding:0 5px">
-            |
+          <el-menu-item style="padding:0 5px; margin-right: 10px">
+            <img :src="this.$store.state.userInfo.avatar" class="avatar" width="36" height="36">
           </el-menu-item>
           <el-menu-item style="padding:0 5px; margin-right: 10px">
             LOG OUT
@@ -59,7 +56,7 @@
 
     data() {
       return {
-        showLogin: true,
+        showLogin: false,
         activeIndex: '1',
         imgUrl:require('../assets/logo_white.png'),
         input: ''
@@ -119,6 +116,9 @@
     height: 30px;
     margin-top: -5px;
 
+  }
+  .avatar {
+    border-radius: 50%;
   }
 </style>
 

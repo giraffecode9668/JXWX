@@ -272,3 +272,23 @@ const list = {
 };
 
 export {list}
+
+const users = {
+  status: "成功",
+  code: 200,
+  data: [
+    {
+      name: 'Bob', //主键id
+      password: '123456',  //评论时间
+      fromAvatar: 'http://ww4.sinaimg.cn/bmiddle/006DLFVFgy1ft0j2pddjuj30v90uvagf.jpg', //评论者头像
+    },
+    {
+      name: 'Cat', //主键id
+      password: '654321',  //评论时间
+      fromAvatar: 'http://ww4.sinaimg.cn/bmiddle/006DLFVFgy1ft0j2pddjuj30v90uvagf.jpg', //评论者头像
+    }
+  ]
+};
+
+export {users}
+

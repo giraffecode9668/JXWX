@@ -43,6 +43,16 @@
 
   export default {
     data(){
+      const repassword = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'))
+        } else if (value !== this.info.password) {
+          callback(new Error('两次输入密码不一致!'))
+        } else {
+          callback()
+        }
+      };
+
       return {
         imgUrl:require('../assets/logo.png'),
         form: {
@@ -52,7 +62,19 @@
           key: '',
           key2: '',
           code: '',
-        }
+        },
+        rules: {
+          name: [
+            { required: true, message: '请输入用户名', trigger: 'blur' },
+          ],
+          key: [
+            { required: true, message: '请输入密码', trigger: 'blur' },
+            { min:6, message: "长度在六个字符以上", trigger: 'blur'},
+          ],
+          key2: [
+            { required: true, validator: repassword, trigger: 'blur' }
+          ]
+        },
       }
     },
     store,
